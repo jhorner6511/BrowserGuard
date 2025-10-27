@@ -463,7 +463,6 @@
                                 logMessage('error', `Error parsing JSON response from ${url}: ${error}`);
                            }
                         }
-                        // --- THIS IS THE FIX ---
                         else if (contentType.includes('javascript') || contentType.includes('text/plain')) {
                            try {
                                 const textResponse = this.responseText;
@@ -497,7 +496,6 @@
                             logMessage('error', `Error parsing JSON response from ${url}: ${error}`);
                         }
                     }
-                    // --- THIS IS THE FIX ---
                     else if (contentType.includes('javascript') || contentType.includes('text/plain')) {
                         try {
                             const textResponse = await response.clone().text();
@@ -769,7 +767,6 @@
                        const content = readerEvent.target.result;
                        const importedWhitelist = JSON.parse(content);
                         if (Array.isArray(importedWhitelist)) {
-                            // --- THIS IS THE FIX ---
                             const validItems = importedWhitelist
                                 .filter(item => item && typeof item.url === 'string' && isValidUrl(item.url))
                                 .map(item => ({ url: item.url, notes: item.notes || "" }));
