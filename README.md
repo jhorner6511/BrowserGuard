@@ -80,3 +80,13 @@ BrowserGuard is a Tampermonkey userscript designed to provide an additional laye
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support the Project
+
+If you find BrowserGuard useful and want to support ongoing development, consider donating to the following addresses:
+
+*   **ETH:** `1DE2xP8hTpvj4HtkUr7VKGhR9wBVfJCygw`
+*   **BTC:** `1DE2xP8hTpvj4HtkUr7VKGhR9wBVfJCygw`
+*   **SOL:** `5ojQAwXFUFD7Eq9zutrq2dvuMcZo3NMt7a4XWC2mz1ib`
+*   **DOGE:** `D6XuTMuxAPoHxwhkDQxkwwsohjgeZFHSVZ`
+*   **MATIC:** `0x4f92e75526bee135f490a36210a7853f0f7875e4`
