@@ -1,2 +1,54 @@
 # BrowserGuard
 In-browser antivirus for enhanced web security.
+
+BrowserGuard is a Tampermonkey userscript designed to provide an additional layer of security within your web browser. It acts as an in-browser antivirus, focusing on proactively blocking malicious scripts and content before they can harm your system. While it is not intended to replace a dedicated desktop antivirus, BrowserGuard significantly enhances your online safety by intercepting and analyzing web page content in real-time.
+
+Key Features:
+
+Proactive Script Blocking: By injecting itself into the browser at the document-start phase, BrowserGuard intercepts script execution attempts before they can be parsed by the browser. This allows the script to effectively prevent malicious code from running.
+Signature-Based Threat Detection: BrowserGuard utilizes a continuously updated database of virus definitions (malicious code patterns) to identify potential threats. These definitions are compared against loaded web page content to detect suspicious or known-malicious code.
+Asymmetric Signature Verification: Definition updates are secured using asymmetric cryptography. The script verifies the digital signature of each definition update against a trusted public key, ensuring that the definitions have not been tampered with during transmission or by a malicious third party. This process includes fingerprint verification, to prevent Man-In-The-Middle (MITM) attacks.
+Content Security Policy (CSP) Heuristics: BrowserGuard simulates some Content Security Policy (CSP) protections by detecting and flagging suspicious coding patterns such as use of eval() or attempts to access global objects like window.top (sandbox escapes).
+Comprehensive Scanning: BrowserGuard scans various aspects of web pages for potential threats, including:
+Inline JavaScript code.
+External JavaScript files loaded via <script> tags.
+Inline event handlers (e.g., onclick, onmouseover).
+Content loaded within <iframe> elements (with CORS limitations).
+External CSS files loaded via <link> tags.
+JSON responses from XMLHttpRequest (XHR) and fetch API calls.
+Code within eval() calls.
+Configurable Scanning: Users can enable or disable scanning of JSON responses, XHR/Fetch calls, and iframe content directly from the dashboard UI.
+Quarantine: High-risk scripts are "quarantined" instead of simply removed from the DOM. The script is prevented from running, and is hidden.
+Performance Optimization: The script utilizes precompiled regular expressions and in-memory caching to minimize performance impact during scanning. It employs a synchronous hashing function in the appendChild hook to avoid blocking the main thread.
+Whitelist (Site Exceptions): Users can add trusted websites to a whitelist. Content from whitelisted sites will be skipped during the scanning process, improving performance. Whitelist entries can be exported and imported for portability.
+Dashboard UI: A floating dashboard provides real-time information about BrowserGuard's status, including:
+Current status (scanning, paused, updated, etc.).
+Number of threats blocked, detected, and ignored.
+Timestamp of the last definition update.
+"Pause Protection" toggle to temporarily disable scanning.
+"Auto-block High Risk" toggle to automatically quarantine high-risk scripts.
+Logging: All security events are logged with timestamps and severity levels (info, warn, error). Logs are stored locally and periodically saved to prevent bloating storage.
+User-Friendly Controls: A manual update button allows users to immediately refresh the virus definitions.
+Offline Mode: The script can run entirely from cached definitions when the user is offline, providing continuous protection.
+How it Works:
+
+Initialization: Upon loading a web page, BrowserGuard initializes itself by:
+Loading previously cached virus definitions.
+Downloading and verifying the latest definitions from a remote source.
+Precompiling regular expressions from the loaded definitions for efficient scanning.
+Overriding core JavaScript functions such as Node.prototype.appendChild and XMLHttpRequest.prototype.open to intercept script execution and network requests.
+Creating the floating dashboard UI.
+Content Interception: BrowserGuard intercepts script execution attempts and network requests before they reach the browser's core engine.
+Threat Analysis: Intercepted content is compared against the loaded virus definitions using regular expression matching.
+Action & Reporting: If a match is found, BrowserGuard takes appropriate action:
+High-risk threats are automatically quarantined or blocked (based on user preference).
+Medium- and low-risk threats are logged for user awareness.
+Events are logged to the console and displayed in the dashboard.
+Continuous Monitoring: A MutationObserver monitors the DOM for dynamically added content, ensuring that newly inserted scripts and elements are also scanned for potential threats.
+Important Notes:
+
+BrowserGuard is not a substitute for a dedicated desktop antivirus solution. It is designed to provide an extra layer of security within the browser environment.
+Users are responsible for ensuring the integrity and trustworthiness of the virus definitions source.
+The effectiveness of BrowserGuard depends on the quality and comprehensiveness of the virus definitions.
+Be careful and conduct a security review before loading.
+This script provides a reasonable level of protection against exploits.
