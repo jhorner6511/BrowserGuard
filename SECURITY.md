@@ -17,7 +17,7 @@ The security of BrowserGuard is paramount. We appreciate your help in responsibl
 **Reporting Process:**
 
 1.  **Do NOT create a public issue on GitHub:** Publicly disclosing a vulnerability before it has been addressed could put users at risk.
-2.  **Contact the Maintainer Privately:** Send a detailed email to [jhorner6511@gmail.com] with the subject "BrowserGuard Security Vulnerability Report". Include the following information:
+2.  **Contact the Maintainer Privately:** Send a detailed email to [jmhbm@dnmx.su] with the subject "BrowserGuard Security Vulnerability Report". Include the following information:
     *   A clear and concise description of the vulnerability.
     *   Steps to reproduce the vulnerability.
     *   The version of BrowserGuard affected.
